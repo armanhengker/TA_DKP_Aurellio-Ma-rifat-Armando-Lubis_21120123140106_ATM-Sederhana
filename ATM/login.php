@@ -13,10 +13,14 @@ if (!isset($_SESSION['atm'])) {
 }
 
 $atm = $_SESSION['atm'];
+$error = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pin = $_POST['pin'];
-    if ($atm->checkPin($pin)) {
+    // Validate that the PIN contains only digits
+    if (!ctype_digit($pin)) {
+        $error = "PIN hanya boleh terdiri dari angka!";
+    } elseif ($atm->checkPin($pin)) {
         $_SESSION['loggedin'] = true;
         header("Location: index.php");
         exit;
@@ -34,15 +38,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <div class="img-container" >
+        <div class="img-container">
             <img src="assets/img/logo mybank.jpg">
         </div>
         <h2>Login MyBank</h2>
         <form method="post" action="">
-            <input type="password" name="pin" placeholder="Masukkan PIN" required>
+            <input type="password" name="pin" placeholder="Masukkan PIN" inputmode="numeric" pattern="\d*" required>
             <input type="submit" value="Login">
         </form>
-        <?php if (isset($error)): ?>
+        <?php if ($error): ?>
             <p style="color: red;"><?= $error ?></p>
         <?php endif; ?>
     </div>

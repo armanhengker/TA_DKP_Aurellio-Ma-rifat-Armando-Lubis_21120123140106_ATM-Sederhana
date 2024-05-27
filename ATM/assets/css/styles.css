@@ -33,6 +33,22 @@ h2 {
     color: #333;
 }
 
+.number-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.number-input:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+}
+
 input[type="password"], input[type="text"], input[type="submit"] {
     width: calc(100% - 22px);
     padding: 12px;
