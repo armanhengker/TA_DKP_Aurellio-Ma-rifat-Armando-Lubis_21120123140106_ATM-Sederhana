@@ -17,7 +17,7 @@ $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pin = $_POST['pin'];
-    // Validate that the PIN contains only digits
+    // Validasi PIN hanya boleh angka
     if (!ctype_digit($pin)) {
         $error = "PIN hanya boleh terdiri dari angka!";
     } elseif ($atm->checkPin($pin)) {
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <h2>Login MyBank</h2>
         <form method="post" action="">
-            <input type="password" name="pin" placeholder="Masukkan PIN" inputmode="numeric" pattern="\d*" required>
+            <input type="password" name="pin" placeholder="Masukkan PIN" required>
             <input type="submit" value="Login">
         </form>
         <?php if ($error): ?>
